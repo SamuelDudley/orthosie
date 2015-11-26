@@ -3,3 +3,5 @@ orthosie/orthosie.db
 *.nja
 *.swp
 .idea/
+*.project
+*.pydevproject
