@@ -5,3 +5,4 @@ orthosie/orthosie.db
 .idea/
 *.project
 *.pydevproject
+*.sock
