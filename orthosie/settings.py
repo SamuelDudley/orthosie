@@ -4,11 +4,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'c+#8x$+zfq00i(z@6_81ht9i-0dcp53iyl_bp$mr^f22k600i*'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
 INSTALLED_APPS = (
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -69,10 +70,14 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+
+
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), '../static').replace('\\', '/'),
 )
 
+STATIC_ROOT = '/var/www/orthosie/static'
+                           
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
