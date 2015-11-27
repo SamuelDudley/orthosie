@@ -1,0 +1,57 @@
+{% comment %}
+    Copyright 2013 Jack David Baucum
+
+    This file is part of Orthosie.
+
+    Orthosie is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Orthosie is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Orthosie.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orthosie Cash Register</title>
+    <script data-main="{% static 'register/js/register.js' %}" src="{% static '/static/js/require.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/static/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static '/static/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/static/css/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/register.css' %}" />
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <div id="input" data-shift-id="{{ transaction.shift.id }}" data-transaction-id="{{ transaction.id }}">
+{% include "register/input.html" %}
+    </div>
+    <div id="transactions" class="container" data-status="ring">
+{% include "register/transactions.html" %}
+    </div>
+    <div id="product_search" class="container hidden">
+{% include "register/product_search.html" %}
+    </div>
+    <div id="totals">
+{% include "register/totals.html" %}
+    </div>
+{% include "register/numpad.html" %}
+{% include "register/buttons.html" %}
+    <div id="confirm_endshift">
+{% include "register/confirm_endshift.html" %}
+    </div>
+    <div id="confirm_cancel_transaction">
+{% include "register/confirm_cancel_transaction.html" %}
+    </div>
+    <form id="csrf_token">
+{% csrf_token %}
+    </form>
+  </body>
+</html>
