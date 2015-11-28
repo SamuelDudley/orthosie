@@ -3,7 +3,6 @@ from register.models import LineItem, Transaction, Shift, PrinterNotFound
 from inventory.models import Grocery, Produce
 from django.views.decorators.csrf import csrf_exempt
 
-
 def index(request):
     current_transaction = Transaction.get_current()
     line_items = current_transaction.lineitem_set.all()

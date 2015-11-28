@@ -18,7 +18,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'register',
-    'inventory'
+    'inventory',
+    'coffee'
 )
 
 MIDDLEWARE_CLASSES = (
