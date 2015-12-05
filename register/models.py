@@ -21,6 +21,7 @@ from django.conf import settings
 from decimal import Decimal
 import time
 from django.core.exceptions import ObjectDoesNotExist
+from printer_interface import Printer
 
 
 class Shift(models.Model):
@@ -66,7 +67,11 @@ class Shift(models.Model):
 
     def print_z_report(self):
         z = ZReport(self)
+<<<<<<< HEAD
         z.print_()
+=======
+        z.print_out()
+>>>>>>> refs/heads/printer-escpos
 
     class Meta:
         ordering = ['begin_date']
@@ -101,7 +106,11 @@ class Transaction(models.Model):
 
     def print_receipt(self):
         r = Receipt(self)
+<<<<<<< HEAD
         r.print_()
+=======
+        r.print_out()
+>>>>>>> refs/heads/printer-escpos
 
     def create_line_item(self, item, quantity, scale=None):
         if self.finish_date is None:
@@ -212,7 +221,11 @@ class Receipt():
         self.printer = Printer(settings.PRINTER)
         self.printer.open()
 
+<<<<<<< HEAD
     def print_(self):
+=======
+    def print_out(self):
+>>>>>>> refs/heads/printer-escpos
         self.print_header()
         self.print_body()
         self.print_footer()
@@ -260,7 +273,11 @@ class ZReport():
         self.printer = Printer(settings.PRINTER)
         self.printer.open()
 
+<<<<<<< HEAD
     def print_(self):
+=======
+    def print_out(self):
+>>>>>>> refs/heads/printer-escpos
         totals = self.shift.get_totals()
         self.printer.print_line(
             'Transactions: ' + str(totals.transaction_count) + '\n'
@@ -273,42 +290,3 @@ class ZReport():
         self.printer.kick_drawer()
         self.printer.cut()
         self.printer.close()
-
-
-class Printer():
-
-    def __init__(self, spool):
-        self.spool = spool
-
-    def open(self):
-        try:
-            self._printer = open(self.spool, 'w')
-        except FileNotFoundError:
-            raise PrinterNotFound(
-                'Unable to locate printer "' + self.spool + '".'
-            )
-
-    def close(self):
-        self._printer.close()
-
-    def print_line(self, line):
-        self._printer.write(line)
-
-    def cut(self):
-        for i in range(8):
-            self.print_line('\n')
-        self._printer.write(chr(27) + chr(105) + chr(10))
-
-    def kick_drawer(self):
-        self._printer.write(
-            chr(27) + chr(112) + chr(0) + chr(48) + '0' + chr(10)
-        )
-
-
-class PrinterNotFound(Exception):
-
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        return self.value
