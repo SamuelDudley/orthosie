@@ -29,6 +29,7 @@ urlpatterns = patterns(
     '',
     url(r'^register/', include('register.urls')),
     url(r'^inventory/', include('inventory.urls')),
+    url(r'^coffee/', include('coffee.urls')),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'api'])
