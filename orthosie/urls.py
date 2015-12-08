@@ -21,6 +21,7 @@ from rest_framework import routers
 from inventory.api_views import ItemViewSet, GroceryViewSet, ProduceViewSet, VendorViewSet
 from register.api_views import ShiftViewSet, TransactionViewSet, LineItemViewSet, TenderViewSet
 
+
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()

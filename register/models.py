@@ -21,7 +21,7 @@ from django.conf import settings
 from decimal import Decimal
 import time
 from django.core.exceptions import ObjectDoesNotExist
-from printer_interface import Printer
+from libs.printer_interface import Printer
 
 
 class Shift(models.Model):
@@ -67,11 +67,7 @@ class Shift(models.Model):
 
     def print_z_report(self):
         z = ZReport(self)
-<<<<<<< HEAD
-        z.print_()
-=======
         z.print_out()
->>>>>>> refs/heads/printer-escpos
 
     class Meta:
         ordering = ['begin_date']
@@ -106,11 +102,7 @@ class Transaction(models.Model):
 
     def print_receipt(self):
         r = Receipt(self)
-<<<<<<< HEAD
-        r.print_()
-=======
         r.print_out()
->>>>>>> refs/heads/printer-escpos
 
     def create_line_item(self, item, quantity, scale=None):
         if self.finish_date is None:
@@ -221,11 +213,7 @@ class Receipt():
         self.printer = Printer(settings.PRINTER)
         self.printer.open()
 
-<<<<<<< HEAD
-    def print_(self):
-=======
     def print_out(self):
->>>>>>> refs/heads/printer-escpos
         self.print_header()
         self.print_body()
         self.print_footer()
@@ -273,11 +261,7 @@ class ZReport():
         self.printer = Printer(settings.PRINTER)
         self.printer.open()
 
-<<<<<<< HEAD
-    def print_(self):
-=======
     def print_out(self):
->>>>>>> refs/heads/printer-escpos
         totals = self.shift.get_totals()
         self.printer.print_line(
             'Transactions: ' + str(totals.transaction_count) + '\n'

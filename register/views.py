@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from register.models import LineItem, Transaction, Shift, PrinterNotFound
+from register.models import LineItem, Transaction, Shift
 from inventory.models import Grocery, Produce
 from django.views.decorators.csrf import csrf_exempt
+
+from libs.printer_interface import PrinterNotFound
 
 def index(request):
     current_transaction = Transaction.get_current()

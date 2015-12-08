@@ -22,10 +22,11 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
 from inventory.models import Grocery, Produce
-from register.models import Shift, Transaction, LineItem, PrinterNotFound, Tender
+from register.models import Shift, Transaction, LineItem, Tender
 from register.serializers import ShiftSerializer, TransactionSerializer
 from register.serializers import LineItemSerializer, TenderSerializer
 
+from libs.printer_interface import PrinterNotFound
 
 @api_view(['GET'])
 def api_root(request, format=None):
